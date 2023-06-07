@@ -39,4 +39,9 @@ public class Reservation {
         this.reservationDate = reservationDate;
         this.reservationId = reservationId;
     }
+
+    public String toString() {
+        return String.format("예약자 분 성함 : %s\n예약자 분 전화번호 : %s\n예약한 방 번호 : %d\n예약일자 : %s",
+                guest.getGuestName(), guest.getPhoneNum(), roomNum, reservationDate);
+    }
 }
