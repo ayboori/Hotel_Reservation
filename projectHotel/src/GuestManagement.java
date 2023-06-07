@@ -39,7 +39,6 @@ public class GuestManagement {
         OffsetDateTime now = OffsetDateTime.now();
         System.out.println("예약이 완료되었습니다.");
         hotel.setAsset(hotel.getAsset() + hotelRooms.get(roomNumber).getPrice());
-//        hotelRooms.getAsset() + hotelRooms.get(roomNumber).getPrice();
         reservation.setReservationDate(String.valueOf(now.withNano(0)));
         reservation.setReservationId(reservationId);
     }
