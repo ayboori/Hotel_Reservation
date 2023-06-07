@@ -20,6 +20,7 @@ public class Hotel {
         this.asset = asset;
     }
 
+    public Hotel() {} // 호텔 객체를 생성하기 쉽게 하기 위해서
 
     public Hotel(ArrayList<Room> rooms, int asset) {
         this.rooms = new ArrayList<>(rooms);

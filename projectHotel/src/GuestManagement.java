@@ -20,31 +20,31 @@ public class GuestManagement implements Management {
 	}
 	
 	public void doReservation(Guest guest, Room room, Hotel hotel) {
-		// ¿¹¾à ¹øÈ£ UUID »ý¼º
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ UUID ï¿½ï¿½
 		String reservationId = UUID.randomUUID().toString();
 
-        // ÇöÀç ³¯Â¥
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥
         OffsetDateTime now = OffsetDateTime.now();
         String nowString = String.valueOf(now.withNano(0));
         
         
-        // ¼Õ´Ô ¼ÒÁö±Ý > ¹æ °¡°Ý ÀÌ¾î¾ß ¿¹¾à
+        // ï¿½Õ´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ > ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
       //   int roomPrice = hotel.getRooms().get(room.getRoomNumber()).getPrice();       
         
 //        if (guest.getMoney() < roomPrice) {
-//            System.out.println("¼ÒÁö±Ý º¸´Ù ºñ½Ñ ¹æÀº ¿¹¾àÇÒ ¼ö ¾ø½À´Ï´Ù.");
+//            System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½.");
 //            return;
 //        }
         
-        // ¼Õ´Ô ¼ÒÁö±Ý ¹æ °¡°Ý¸¸Å­ ¸¶ÀÌ³Ê½º        
+        // ï¿½Õ´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ý¸ï¿½Å­ ï¿½ï¿½ï¿½Ì³Ê½ï¿½        
         
      //   hotel.setAsset(hotel.getAsset() + roomPrice);	
         
         Reservation reservation = new Reservation(guest, room.getRoomNumber(), nowString, reservationId);
         
-        // ÀüÃ¼ ¿¡¾à ¸ñ·Ï¿¡ ¹æ±Ý »ý¼ºÇÑ ¿¹¾à °´Ã¼ Ãß°¡
+        // ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ß°ï¿½
         allReservation.getReservaitonHashMap().put(reservationId,reservation);
         
-        System.out.println("¿¹¾àÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
+        System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½Ç¾ï¿½ï¿½Ï´ï¿½.");
 	}
 }
