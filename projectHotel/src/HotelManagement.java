@@ -3,10 +3,13 @@ import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
 
-
 public class HotelManagement implements Management {
-    AllReservation allReservation = new AllReservation(new HashMap<>());
-    Hotel hotel = new Hotel();
+	AllReservation allReservation;
+   
+	HotelManagement(AllReservation allReservation){
+		this.allReservation = allReservation;
+	}
+	
     @Override
     public void showReservationList() {
         while (true) {
@@ -50,3 +53,4 @@ public class HotelManagement implements Management {
         }
     }
 }
+
