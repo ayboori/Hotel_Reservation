@@ -1,15 +1,16 @@
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 
 public class Hotel {
 
-    private ArrayList<Room> room;
+    private ArrayList<Room> rooms;
     private int asset;
 
-    public ArrayList<Room> getRoom() {
-        return room;
+    public ArrayList<Room> getRooms() {
+        return rooms;
     }
-    public void setRoom(ArrayList<Room> room) {
-        this.room = room;
+    public void setRooms(ArrayList<Room> rooms) {
+        this.rooms = rooms;
     }
 
     public int getAsset() {
@@ -20,8 +21,8 @@ public class Hotel {
     }
 
 
-    public Hotel(ArrayList<Room> room, int asset) {
-        this.room = new ArrayList<>(room);
+    public Hotel(ArrayList<Room> rooms, int asset) {
+        this.rooms = new ArrayList<>(rooms);
         this.asset = asset;
     }
 

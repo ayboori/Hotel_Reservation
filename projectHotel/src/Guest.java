@@ -2,6 +2,7 @@ public class Guest {
     private String guestName;
     private String phoneNum;
     private int money;
+    private String guestId;
 
     public String getGuestName() {return guestName;}
     public void setGuestName(String guestName) {
@@ -21,9 +22,10 @@ public class Guest {
     public void setMoney(int money) { this.money = money; }
 
 
-    public Guest(String guestName, String phoneNum, int money) {
+    public Guest(String guestName, String phoneNum, int money,String guestId) {
         this.guestName = guestName;
         this.phoneNum = phoneNum;
         this.money = money;
+        this.guestId = guestId;
     }
 }

@@ -1,9 +1,13 @@
 import java.util.HashMap;
 import java.util.Map;
 
-
 public class HotelManagement implements Management {
-    AllReservation allReservation = new AllReservation(new HashMap<>());
+	AllReservation allReservation;
+   
+	HotelManagement(AllReservation allReservation){
+		this.allReservation = allReservation;
+	}
+	
     @Override
     public void showReservationList() {
 //        Scanner sc = new Scanner(System.in);
@@ -17,3 +21,4 @@ public class HotelManagement implements Management {
         }
     }
 }
+
