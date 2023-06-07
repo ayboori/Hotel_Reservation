@@ -2,9 +2,6 @@
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
-/**/.idea
-/Hotel_Reservation.iml
-/**/projectHotel.iml
 
 ### Eclipse ###
 .apt_generated
