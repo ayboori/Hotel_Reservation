@@ -1,4 +1,4 @@
-public class Reservaiton {
+public class Reservation {
 
     private Guest guest;
     private int roomNum;
@@ -33,7 +33,7 @@ public class Reservaiton {
         this.reservationId = reservationId;
     }
 
-    public Reservaiton(Guest guest, int roomNum, String reservationDate, String reservationId) {
+    public Reservation(Guest guest, int roomNum, String reservationDate, String reservationId) {
         this.guest = guest;
         this.roomNum = roomNum;
         this.reservationDate = reservationDate;
