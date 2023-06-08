@@ -8,6 +8,8 @@ public class Main {
         // 방 정보 입력 및 목록 명시
         Scanner scanner = new Scanner(System.in);
         AllReservation allReservation = new AllReservation(new HashMap<>());
+        GuestManagement guestManagement = new GuestManagement(allReservation);
+
         AllGuests allGuests = new AllGuests();
 
         System.out.println("안녕하십니까? 최상의 서비스로 여러분을 맞이합니다.");
@@ -47,58 +49,55 @@ public class Main {
             break;
         }
 
-        // 로그인 할 때 정해진 게스트를 세팅
-        // Guest guest = 로그인함수() ;
+        Main main = new Main(); // 무한루프로 객체 생성할 필요는 없어서 밖으로 뺐음
         
-        // �샇�뀛 �뿉�빟 愿��젴 硫붿꽌�뱶
+        // 호텔 에약 관련 메서드
         while (true) {
-            Main main = new Main();
             main.displayRoom(); // 호출 방식 생각해보기
             System.out.println("\n------------------------------------------------\n");
-
-            System.out.println("1. 예약 하기     2. 예약 조회      3. 예약 취소      4. 종료");
+            System.out.println("1. 예약 하기     2. 예약 조회  / 취소   3. 종료");
 
             int choiceNum = scanner.nextInt();
             switch (choiceNum) {
                 case 1:
-                    // �삁�빟�븯湲� 硫붿꽌�뱶 (�삁�빟�븷 �븣留덈떎 �옄�궛 異붽�)
+                    // 예약하기 메서드 (예약할 때마다 자산 추가)
                     break;
                 case 2:
-                    // �삁�빟議고쉶 硫붿꽌�뱶
+                    // 예약조회 메서드
+                	
+                	//예약 취소 메소드
+                	
                     break;
                 case 3:
-                    // 怨좉컼 �뿉�빟 痍⑥냼
-                    break;
-                case 4:
-                    // 醫낅즺
+                    // 종료
+                    scanner.close();
                     return;
                 case 0:
-                    // 愿�由ъ옄 紐⑤뱶 => 紐⑤뱺 �삁�빟 議고쉶
+                    // 관리자 모드 => 모든 예약 조회
                     break;
                 default:
-                    System.out.println("�옒紐삳맂 踰덊샇�엯�땲�떎. �떎�떆 �엯�젰�빐二쇱꽭�슂.");
+                    System.out.println("잘못된 번호입니다. 다시 입력해주세요.");
             }
         }
+        
     }
 
     public void displayRoom() {
-        // 諛� �젙蹂� �궫�엯
+        // 방 정보 삽입
         ArrayList<Room> roomList = new ArrayList<>();
         roomList.add(new Room(300, 3000000, 1));
         roomList.add(new Room(400, 4000000, 2));
         roomList.add(new Room(250, 2000000, 3));
 
-        // Hotel �씤�뒪�꽩�뒪 �깮�꽦
+        // Hotel 인스턴스 생성
         Hotel hotel = new Hotel(roomList, 0);
         ArrayList<Room> hotelRooms = hotel.getRooms();
 
-        // �샇�뀛 諛� 紐⑸줉
-        for (Room room : hotelRooms) { // 異뷀썑 �뵒�옄�씤 �닔�젙
-            String roomInfo = String.format("�궗�씠利�: %s      媛�寃�: %d      媛앹떎 踰덊샇: %d",
+        // 호텔 방 목록
+        for (Room room : hotelRooms) { // 추후 디자인 수정
+            String roomInfo = String.format("사이즈: %s      가격: %d      객실 번호: %d",
                     room.getSize(), room.getPrice(), room.getRoomNumber());
             System.out.println(roomInfo);
         }
     }
 }
-
-

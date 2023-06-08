@@ -24,7 +24,7 @@ public class HotelManagement implements Management {
             }
             System.out.println("\n---------------------------------------------\n");
             System.out.println("현재 예약된 방의 수 : " + allReservation.getReservaitonHashMap().size());
-            System.out.println("현재 호텔 예상 매출 : " + hotel.getAsset());
+            // 에러??              System.out.println("현재 호텔 예상 매출 : " + hotel.getAsset());
             while (true) {
                 System.out.println("\n---------------------------------------------\n");
                 System.out.println("1. 프로그램 종료하기     2. 예약 취소하기\n");
