@@ -2,15 +2,18 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.UUID;
+import java.util.Scanner;
 
 public class GuestManagement implements Management {
 
     AllReservation allReservation;
     Reservation reservation;
 
-    GuestManagement(AllReservation allReservation){
+    GuestManagement(AllReservation allReservation) {
         this.allReservation = allReservation;
     }
+
+    Scanner sc = new Scanner(System.in);
 
     @Override
     public void showReservationList() {
@@ -87,6 +90,7 @@ public class GuestManagement implements Management {
                 guest.setMoney(guest.getMoney() - roomPrice); // 손님 소지금 방 가격만큼 마이너스
                 hotel.setAsset(hotel.getAsset() + roomPrice); // 호텔 보유자산에 방 가격 추가
 
+
                 // 현재 날짜
                 OffsetDateTime now = OffsetDateTime.now();
                 String nowString = String.valueOf(now.withNano(0));
@@ -100,6 +104,7 @@ public class GuestManagement implements Management {
                 allReservation.getReservaitonHashMap().put(reservationId, reservation);
 
                 System.out.println("예약이 완료되었습니다.\n 예약 번호는 : " + reservationId + "입니다." );
+
                 Thread.sleep(3000);
                 break;
             } catch (InterruptedException e) {
