@@ -24,52 +24,56 @@ public class GuestManagement implements Management {
     }
 
     public void doReservation(Guest guest, Room room, Hotel hotel) {
-        // 객실 목록 출력
-        ArrayList<Room> hotelRooms = hotel.getRooms();
-        for (Room roomList : hotelRooms) {
-            String roomInfo = String.format("사이즈: %s      가격: %d      객실 번호: %d",
-                    roomList.getSize(), roomList.getPrice(), roomList.getRoomNumber());
-            System.out.println(roomInfo);
-        }
+        while (true) {
+            // 객실 목록 출력
+            ArrayList<Room> hotelRooms = hotel.getRooms();
+            for (Room roomList : hotelRooms) {
+                String roomInfo = String.format("사이즈: %s      가격: %d      객실 번호: %d",
+                        roomList.getSize(), roomList.getPrice(), roomList.getRoomNumber());
+                System.out.println(roomInfo);
+            }
 
-        // 예약할 객실 입력받기
-        System.out.println("예약할 객실 번호를 입력해 주세요.");
-        int roomNum = sc.nextInt();
+            // 예약할 객실 입력받기
+            System.out.println("예약할 객실 번호를 입력해 주세요.");
+            int roomNum = sc.nextInt();
 
-        // 고객이 선택한 객실 가격
-        Room selectedRoom = hotel.getRooms().get(roomNum - 1);
-        int roomPrice = selectedRoom.getPrice();
+            // 고객이 선택한 객실 가격
+            Room selectedRoom = hotel.getRooms().get(roomNum - 1);
+            int roomPrice = selectedRoom.getPrice();
 
-        // 객실 목록 출력으로 돌아가기
-        if (!selectedRoom.isAvailable()) { // 객실 예약 불가 상태
-            System.out.println("선택하신 객실은 예약 불가 상태입니다.");
-            doReservation(guest, room, hotel); // 객실 목록 출력으로 돌아가기 위한 재귀 호출
-            return;
-        } else if (guest.getMoney() < roomPrice) { // (고객 소지금 < 숙박비) 예약 불가
-            System.out.println("소지금 보다 비싼 방은 예약할 수 없습니다.");
-            doReservation(guest, room, hotel);
-            return;
-        }
+            // 객실 목록 출력으로 돌아가기
+            if (roomNum < 1 || roomNum > hotelRooms.size()) {
+                System.out.println("올바른 객실 번호를 입력해 주세요.");
+                continue;
+            } else if (!selectedRoom.isAvailable()) { // 객실 예약 불가 상태
+                System.out.println("선택하신 객실은 예약 불가 상태입니다.");
+                continue;
+            } else if (guest.getMoney() < roomPrice) { // (고객 소지금 < 숙박비) 예약 불가
+                System.out.println("소지금 보다 비싼 방은 예약할 수 없습니다.");
+                continue;
+            }
 
-        try {
-            guest.setMoney(guest.getMoney() - roomPrice); // 손님 소지금 방 가격만큼 마이너스
-            hotel.setAsset(hotel.getAsset() + roomPrice); // 호텔 보유자산에 방 가격 추가
+            try {
+                guest.setMoney(guest.getMoney() - roomPrice); // 손님 소지금 방 가격만큼 마이너스
+                hotel.setAsset(hotel.getAsset() + roomPrice); // 호텔 보유자산에 방 가격 추가
 
-            // 현재 날짜
-            OffsetDateTime now = OffsetDateTime.now();
-            String nowString = String.valueOf(now.withNano(0));
-            // 예약 번호 UUID 생성
-            String reservationId = UUID.randomUUID().toString();
+                // 현재 날짜
+                OffsetDateTime now = OffsetDateTime.now();
+                String nowString = String.valueOf(now.withNano(0));
+                // 예약 번호 UUID 생성
+                String reservationId = UUID.randomUUID().toString();
 
-            Reservation reservation = new Reservation(guest, room.getRoomNumber(), nowString, reservationId);
+                Reservation reservation = new Reservation(guest, room.getRoomNumber(), nowString, reservationId);
 
-            // 전체 에약 목록에 방금 생성한 예약 객체 추가
-            allReservation.getReservaitonHashMap().put(reservationId, reservation);
+                // 전체 에약 목록에 방금 생성한 예약 객체 추가
+                allReservation.getReservaitonHashMap().put(reservationId, reservation);
 
-            System.out.println("예약이 완료되었습니다.");
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+                System.out.println("예약이 완료되었습니다.");
+                Thread.sleep(3000);
+                break;
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }
