@@ -5,20 +5,59 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        // 諛� �젙蹂� �엯�젰 諛� 紐⑸줉 紐낆떆
-        Main main = new Main();
-        main.displayRoom();
-        
+        // 방 정보 입력 및 목록 명시
+        Scanner scanner = new Scanner(System.in);
         AllReservation allReservation = new AllReservation(new HashMap<>());
+        AllGuests allGuests = new AllGuests();
+
+        System.out.println("안녕하십니까? 최상의 서비스로 여러분을 맞이합니다.");
+        System.out.println("기존 저희 호텔 회원이라면 로그인을 해주십시오.");
+        System.out.println("처음이신가요? 회원가입을 통해 최상의 서비스를 누려보세요 !");
+
+        // 로그인 의사결정
+        while (true) {
+            System.out.println("1. 로그인     2. 회원가입     3. 나가기");
+            int choiceNum = scanner.nextInt();
+            switch (choiceNum) {
+                case 1:
+                    // 로그인 메서드
+                    String inputId = scanner.next();
+                    Guest guest = allGuests.logIN(inputId);
+                    if (guest == null) {
+                        continue;
+                    }
+                    break;
+                case 2:
+                    allGuests.makeGuest();
+                    continue;
+                case 3:
+                    System.out.println("이용해주셔서 감사합니다. 다음에 더 나은 서비스로 기다리겠습니다.");
+                    return;
+                default:
+                    System.out.println("잘못된 입력값입니다. 다시 입력해주세요.");
+                    System.out.println("1. 돌아가기     2. 나가기");
+                    int subChoiceNum = scanner.nextInt();
+                    if (subChoiceNum == 1) {
+                        continue;
+                    } else if (subChoiceNum == 2) {
+                        System.out.println("이용해주셔서 감사합니다. 다음에 더 나은 서비스로 기다리겠습니다.");
+                        return;
+                    }
+            }
+            break;
+        }
 
         // 로그인 할 때 정해진 게스트를 세팅
         // Guest guest = 로그인함수() ;
         
         // �샇�뀛 �뿉�빟 愿��젴 硫붿꽌�뱶
         while (true) {
+            Main main = new Main();
+            main.displayRoom(); // 호출 방식 생각해보기
             System.out.println("\n------------------------------------------------\n");
-            System.out.println("1. �삁�빟 �븯湲�     2. �삁�빟 議고쉶      3. �삁�빟 痍⑥냼      4. 醫낅즺");
-            Scanner scanner = new Scanner(System.in);
+
+            System.out.println("1. 예약 하기     2. 예약 조회      3. 예약 취소      4. 종료");
+
             int choiceNum = scanner.nextInt();
             switch (choiceNum) {
                 case 1:
@@ -41,6 +80,7 @@ public class Main {
             }
         }
     }
+
     public void displayRoom() {
         // 諛� �젙蹂� �궫�엯
         ArrayList<Room> roomList = new ArrayList<>();
