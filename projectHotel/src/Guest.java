@@ -3,6 +3,7 @@ public class Guest {
     private String guestName;
     private String phoneNum;
     private int money;
+//    private String guestId;
 
     public String getGuestName() {return guestName;}
     public void setGuestName(String guestName) {
