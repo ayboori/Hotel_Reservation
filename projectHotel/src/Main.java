@@ -44,7 +44,7 @@ public class Main {
 
         // Hotel 인스턴스 생성
         Hotel hotel = new Hotel(roomList, 0);
-        ArrayList<Room> hotelRooms = hotel.getRoom();
+        ArrayList<Room> hotelRooms = hotel.getRooms();
 
         // 호텔 방 목록
         for (Room room : hotelRooms) { // 추후 디자인 수정
