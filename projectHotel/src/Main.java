@@ -14,6 +14,7 @@ public class Main {
 
         AllGuests allGuests = new AllGuests();
         Hotel hotel = new Hotel(0);
+        Main main = new Main(); // 무한루프로 객체 생성할 필요는 없어서 밖으로 뺐음
         
         System.out.println("안녕하십니까? 최상의 서비스로 여러분을 맞이합니다.");
         System.out.println("기존 저희 호텔 회원이라면 로그인을 해주십시오.");
@@ -52,8 +53,6 @@ public class Main {
             }
             break;
         }
-
-        Main main = new Main(); // 무한루프로 객체 생성할 필요는 없어서 밖으로 뺐음
         
         // 호텔 에약 관련 메서드
         while (true) {

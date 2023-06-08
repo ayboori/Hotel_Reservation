@@ -94,7 +94,8 @@ public class GuestManagement implements Management {
                 String reservationId = UUID.randomUUID().toString();
 
                 Reservation reservation = new Reservation(guest, selectedRoom.getRoomNumber(), nowString, reservationId);
-
+               
+                
                 // 전체 에약 목록에 방금 생성한 예약 객체 추가
                 allReservation.getReservaitonHashMap().put(reservationId, reservation);
 
