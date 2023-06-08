@@ -11,11 +11,13 @@ public class AllGuests {
         String guestName = sc.nextLine();
         System.out.println("전화번호를 입력해 주세요. ex) 010-1234-5678");
         String phoneNum = sc.nextLine();
+        //소지금 입력 받기
+        System.out.println("소지금을 입력해 주세요. (단위 : 만원)");
+        int money = sc.nextInt() * 10000;
+
         // id는 사용자 이름 + uuid 4글자
         String guestId = guestName + UUID.randomUUID().toString().substring(0, 4);
-        //소지금 입력 받기
-        System.out.println("소지금을 입력해 주세요.");
-        int money = sc.nextInt();
+        
         Guest guest = new Guest(guestName, phoneNum, money,guestId);
         // 아이디 명시
         System.out.println("회원가입을 축하합니다 !");
