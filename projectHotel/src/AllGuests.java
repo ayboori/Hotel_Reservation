@@ -35,5 +35,6 @@ public class AllGuests {
             System.out.println("id를 다시 확인해주세요.");
         }
         return guest;
+        // encoding 확인용 풀 리퀘스트
     }
 }
