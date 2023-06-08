@@ -18,16 +18,6 @@ public class GuestManagement implements Management {
             return;
         }
 
-        System.out.println("예약 목록:");
-
-        for (Map.Entry<String, Reservation> allReservation : allReservation.getReservaitonHashMap().entrySet()) {
-            String reservationId = allReservation.getKey();
-            Reservation reservation = allReservation.getValue();
-//            System.out.println(reservationId + "\n" + reservation.toString());
-            System.out.println("예약 번호: " + reservationId);
-            System.out.println(reservation.toString());
-        }
-
         System.out.println("예약 번호를 입력하세요:");
         Scanner scanner = new Scanner(System.in);
         String reservationId = scanner.nextLine();
