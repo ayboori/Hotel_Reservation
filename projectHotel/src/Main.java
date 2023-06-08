@@ -9,6 +9,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         AllReservation allReservation = new AllReservation(new HashMap<>());
         GuestManagement guestManagement = new GuestManagement(allReservation);
+
         AllGuests allGuests = new AllGuests();
 
         System.out.println("안녕하십니까? 최상의 서비스로 여러분을 맞이합니다.");
@@ -48,7 +49,6 @@ public class Main {
             break;
         }
 
-
         Main main = new Main(); // 무한루프로 객체 생성할 필요는 없어서 밖으로 뺐음
         
         // 호텔 에약 관련 메서드
@@ -56,6 +56,7 @@ public class Main {
             main.displayRoom(); // 호출 방식 생각해보기
             System.out.println("\n------------------------------------------------\n");
             System.out.println("1. 예약 하기     2. 예약 조회  / 취소   3. 종료");
+
             int choiceNum = scanner.nextInt();
             switch (choiceNum) {
                 case 1:

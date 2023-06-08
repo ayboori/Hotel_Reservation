@@ -21,6 +21,7 @@ public class AllGuests {
         System.out.println("회원가입을 축하합니다 !");
         System.out.println("고객님의 아이디는 " + "[ " +guest.getGuestId() +" ]"+ " 입니다.");
         System.out.println("이제 저희 호텔의 다양한 서비스를 이용하실 수 있습니다.");
+
         // 전체 게스트 목록에 추가
         guests.put(guestId,guest);
     }
