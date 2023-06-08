@@ -28,6 +28,9 @@ public class Guest {
         this.guestId = guestId;
     }
 
+    public Guest() {
+    	
+    }
 
     public Guest(String guestName, String phoneNum, int money, String guestId) {
         this.guestName = guestName;

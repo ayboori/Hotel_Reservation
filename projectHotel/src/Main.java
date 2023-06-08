@@ -9,9 +9,13 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         AllReservation allReservation = new AllReservation(new HashMap<>());
         GuestManagement guestManagement = new GuestManagement(allReservation);
+        HotelManagement hotelManagement = new HotelManagement(allReservation);
+        Guest guest = new Guest();
 
         AllGuests allGuests = new AllGuests();
-
+        Hotel hotel = new Hotel(0);
+        Main main = new Main(); // 무한루프로 객체 생성할 필요는 없어서 밖으로 뺐음
+        
         System.out.println("안녕하십니까? 최상의 서비스로 여러분을 맞이합니다.");
         System.out.println("기존 저희 호텔 회원이라면 로그인을 해주십시오.");
         System.out.println("처음이신가요? 회원가입을 통해 최상의 서비스를 누려보세요 !");
@@ -23,8 +27,9 @@ public class Main {
             switch (choiceNum) {
                 case 1:
                     // 로그인 메서드
+                	System.out.println("로그인 하실 아이디를 입력해주세요.");
                     String inputId = scanner.next();
-                    Guest guest = allGuests.logIN(inputId);
+                    guest = allGuests.logIN(inputId);
                     if (guest == null) {
                         continue;
                     }
@@ -48,12 +53,9 @@ public class Main {
             }
             break;
         }
-
-        Main main = new Main(); // 무한루프로 객체 생성할 필요는 없어서 밖으로 뺐음
         
         // 호텔 에약 관련 메서드
         while (true) {
-            main.displayRoom(); // 호출 방식 생각해보기
             System.out.println("\n------------------------------------------------\n");
             System.out.println("1. 예약 하기     2. 예약 조회  / 취소   3. 종료");
 
@@ -61,12 +63,13 @@ public class Main {
             switch (choiceNum) {
                 case 1:
                     // 예약하기 메서드 (예약할 때마다 자산 추가)
+                    main.displayRoom(hotel); // 호출 방식 생각해보기
+                	guestManagement.doReservation(guest,hotel);
                     break;
                 case 2:
                     // 예약조회 메서드
-                	
+                	guestManagement.showReservationList();
                 	//예약 취소 메소드
-                	
                     break;
                 case 3:
                     // 종료
@@ -74,6 +77,7 @@ public class Main {
                     return;
                 case 0:
                     // 관리자 모드 => 모든 예약 조회
+                	hotelManagement.showReservationList();
                     break;
                 default:
                     System.out.println("잘못된 번호입니다. 다시 입력해주세요.");
@@ -82,7 +86,7 @@ public class Main {
         
     }
 
-    public void displayRoom() {
+    public void displayRoom(Hotel hotel) {
         // 방 정보 삽입
         ArrayList<Room> roomList = new ArrayList<>();
         roomList.add(new Room(300, 3000000, 1));
@@ -90,7 +94,7 @@ public class Main {
         roomList.add(new Room(250, 2000000, 3));
 
         // Hotel 인스턴스 생성
-        Hotel hotel = new Hotel(roomList, 0);
+        hotel.setRooms(roomList);
         ArrayList<Room> hotelRooms = hotel.getRooms();
 
         // 호텔 방 목록

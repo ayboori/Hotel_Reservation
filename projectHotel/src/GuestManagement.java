@@ -29,31 +29,32 @@ public class GuestManagement implements Management {
         if (allReservation.getReservaitonHashMap().containsKey(reservationId)) {//예약 번호가 존재하는 지 확인
             System.out.println("선택한 예약 정보:");
             Reservation selectedReservation = allReservation.getReservaitonHashMap().get(reservationId);
-            System.out.println(selectedReservation.toString());
+            System.out.println(selectedReservation.toString()); // 수정하기
+            cancelReservation(reservationId);
         } else {
             System.out.println("예약 번호가 올바르지 않습니다.");
         }
     }
 
+    Scanner sc = new Scanner(System.in);
+
     public void cancelReservation(String ReservationNumber) {
     	System.out.println("예약을 취소하시겠습니까? y/n");
-    	Scanner scanner = new Scanner(System.in);
-    	
 
     	//예약 취소 여부를 무한 루프로 받음 (잘못된 값은 다시 입력받도록)    	
     	try {
     		while(true) {
-        	String answer = scanner.nextLine();
+        	String answer = sc.nextLine();
 	    	switch (answer) {
 	    		case "y":
 	    			allReservation.getReservaitonHashMap().remove(ReservationNumber);
 	    			System.out.println("예약이 취소되었습니다.\n 3초 뒤 메인 화면으로 연결됩니다.");
 	    			Thread.sleep(3000);
-	    			break;
+	    			return;
 	    		case "n":
 	    			System.out.println("예약을 취소하지 않습니다.\n 3초 뒤 메인 화면으로 연결됩니다.");
 	    			Thread.sleep(3000);
-	    			break;
+	    			return;
 	    		default:
 	    			System.out.println("잘못된 문자입니다. 예약을 취소하려면 y, 아니면 n을 입력해주세요");
 	    		}
@@ -63,16 +64,8 @@ public class GuestManagement implements Management {
     	}    	
     }
 
-    public void doReservation(Guest guest, Room room, Hotel hotel) {
+    public void doReservation(Guest guest, Hotel hotel) {
         while (true) {
-            // 객실 목록 출력
-            ArrayList<Room> hotelRooms = hotel.getRooms();
-            for (Room roomList : hotelRooms) {
-                String roomInfo = String.format("사이즈: %s      가격: %d      객실 번호: %d",
-                        roomList.getSize(), roomList.getPrice(), roomList.getRoomNumber());
-                System.out.println(roomInfo);
-            }
-
             // 예약할 객실 입력받기
             System.out.println("예약할 객실 번호를 입력해 주세요.");
             int roomNum = sc.nextInt();
@@ -82,7 +75,7 @@ public class GuestManagement implements Management {
             int roomPrice = selectedRoom.getPrice();
 
             // 객실 목록 출력으로 돌아가기
-            if (roomNum < 1 || roomNum > hotelRooms.size()) {
+            if (roomNum < 1 || roomNum > hotel.getRooms().size()) {
                 System.out.println("올바른 객실 번호를 입력해 주세요.");
                 continue;
             } else if (!selectedRoom.isAvailable()) { // 객실 예약 불가 상태
@@ -90,12 +83,13 @@ public class GuestManagement implements Management {
                 continue;
             } else if (guest.getMoney() < roomPrice) { // (고객 소지금 < 숙박비) 예약 불가
                 System.out.println("소지금 보다 비싼 방은 예약할 수 없습니다.");
-                continue;
+                return;
             }
 
             try {
                 guest.setMoney(guest.getMoney() - roomPrice); // 손님 소지금 방 가격만큼 마이너스
                 hotel.setAsset(hotel.getAsset() + roomPrice); // 호텔 보유자산에 방 가격 추가
+
 
                 // 현재 날짜
                 OffsetDateTime now = OffsetDateTime.now();
@@ -103,13 +97,14 @@ public class GuestManagement implements Management {
                 // 예약 번호 UUID 생성
                 String reservationId = UUID.randomUUID().toString();
 
-                Reservation reservation = new Reservation(guest, room.getRoomNumber(), nowString, reservationId);
-
+                Reservation reservation = new Reservation(guest, selectedRoom.getRoomNumber(), nowString, reservationId);
+               
+                
                 // 전체 에약 목록에 방금 생성한 예약 객체 추가
                 allReservation.getReservaitonHashMap().put(reservationId, reservation);
 
+                System.out.println("예약이 완료되었습니다.\n 예약 번호는 : " + reservationId + "입니다." );
 
-                System.out.println("예약이 완료되었습니다.");
                 Thread.sleep(3000);
                 break;
             } catch (InterruptedException e) {
