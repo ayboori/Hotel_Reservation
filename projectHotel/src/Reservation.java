@@ -5,7 +5,6 @@ public class Reservation {
     private int roomNum;
     private String reservationDate;
     private String reservationId;
-
     public int getRoomNum() {
         return roomNum;
     }

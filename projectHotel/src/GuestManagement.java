@@ -36,8 +36,10 @@ public class GuestManagement implements Management {
             return;
         }
 
-        // 손님 소지금 방 가격만큼 마이너스
-
+        // 손님 소지금 방 가격만큼 마이너스 - 추후 구현
+      
+      
+        // 호텔텔 전체 잔액에 현재 방 가격 추가
         hotel.setAsset(hotel.getAsset() + roomPrice);
 
         Reservation reservation = new Reservation(guest, room.getRoomNumber(), nowString, reservationId);

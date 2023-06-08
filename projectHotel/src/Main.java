@@ -1,54 +1,60 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
-        // 방 정보 입력 및 목록 명시
+        // 諛� �젙蹂� �엯�젰 諛� 紐⑸줉 紐낆떆
         Main main = new Main();
         main.displayRoom();
+        
+        AllReservation allReservation = new AllReservation(new HashMap<>());
 
-        // 호텔 에약 관련 메서드
+        // 로그인 할 때 정해진 게스트를 세팅
+        // Guest guest = 로그인함수() ;
+        
+        // �샇�뀛 �뿉�빟 愿��젴 硫붿꽌�뱶
         while (true) {
             System.out.println("\n------------------------------------------------\n");
-            System.out.println("1. 예약 하기     2. 예약 조회      3. 예약 취소      4. 종료");
+            System.out.println("1. �삁�빟 �븯湲�     2. �삁�빟 議고쉶      3. �삁�빟 痍⑥냼      4. 醫낅즺");
             Scanner scanner = new Scanner(System.in);
             int choiceNum = scanner.nextInt();
             switch (choiceNum) {
                 case 1:
-                    // 예약하기 메서드 (예약할 때마다 자산 추가)
+                    // �삁�빟�븯湲� 硫붿꽌�뱶 (�삁�빟�븷 �븣留덈떎 �옄�궛 異붽�)
                     break;
                 case 2:
-                    // 예약조회 메서드
+                    // �삁�빟議고쉶 硫붿꽌�뱶
                     break;
                 case 3:
-                    // 고객 에약 취소
+                    // 怨좉컼 �뿉�빟 痍⑥냼
                     break;
                 case 4:
-                    // 종료
+                    // 醫낅즺
                     return;
                 case 0:
-                    // 관리자 모드 => 모든 예약 조회
+                    // 愿�由ъ옄 紐⑤뱶 => 紐⑤뱺 �삁�빟 議고쉶
                     break;
                 default:
-                    System.out.println("잘못된 번호입니다. 다시 입력해주세요.");
+                    System.out.println("�옒紐삳맂 踰덊샇�엯�땲�떎. �떎�떆 �엯�젰�빐二쇱꽭�슂.");
             }
         }
     }
     public void displayRoom() {
-        // 방 정보 삽입
+        // 諛� �젙蹂� �궫�엯
         ArrayList<Room> roomList = new ArrayList<>();
         roomList.add(new Room(300, 3000000, 1));
         roomList.add(new Room(400, 4000000, 2));
         roomList.add(new Room(250, 2000000, 3));
 
-        // Hotel 인스턴스 생성
+        // Hotel �씤�뒪�꽩�뒪 �깮�꽦
         Hotel hotel = new Hotel(roomList, 0);
         ArrayList<Room> hotelRooms = hotel.getRooms();
 
-        // 호텔 방 목록
-        for (Room room : hotelRooms) { // 추후 디자인 수정
-            String roomInfo = String.format("사이즈: %s      가격: %d      객실 번호: %d",
+        // �샇�뀛 諛� 紐⑸줉
+        for (Room room : hotelRooms) { // 異뷀썑 �뵒�옄�씤 �닔�젙
+            String roomInfo = String.format("�궗�씠利�: %s      媛�寃�: %d      媛앹떎 踰덊샇: %d",
                     room.getSize(), room.getPrice(), room.getRoomNumber());
             System.out.println(roomInfo);
         }
