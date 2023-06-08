@@ -50,7 +50,7 @@ public class Main {
 
         // Hotel �씤�뒪�꽩�뒪 �깮�꽦
         Hotel hotel = new Hotel(roomList, 0);
-        ArrayList<Room> hotelRooms = hotel.getRoom();
+        ArrayList<Room> hotelRooms = hotel.getRooms();
 
         // �샇�뀛 諛� 紐⑸줉
         for (Room room : hotelRooms) { // 異뷀썑 �뵒�옄�씤 �닔�젙
