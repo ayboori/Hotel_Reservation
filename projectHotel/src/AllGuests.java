@@ -1,5 +1,7 @@
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.UUID;
+
 public class AllGuests {
     HashMap<String,Guest> guests = new HashMap<String,Guest>();
 
@@ -7,12 +9,12 @@ public class AllGuests {
         System.out.println("\n------------------------------------------------\n");
         Scanner sc = new Scanner(System.in);
         System.out.println("이름을 입력해 주세요.");
-        String guestName = sc.next();
-        System.out.println("전화번호를 입력해 주세요.");
-        String phoneNum = sc.next();
+        String guestName = sc.nextLine();
+        System.out.println("전화번호를 입력해 주세요. ex) 010-1234-5678");
+        String phoneNum = sc.nextLine();
 
-        // uid 부분 추후 구현, 우선 임의의 값 삽입
-        String guestId = "1";
+        // id는 사용자 이름 + uuid 4글자
+        String guestId = guestName + UUID.randomUUID().toString().substring(0, 4);
 
         //소지금 입력 받기
         System.out.println("소지금을 입력해 주세요.");
@@ -25,10 +27,13 @@ public class AllGuests {
 
     // 로그인 기능 구현해보기
     // 사용자가 id 입력하면 Guest 객체를 return하여 로그인하는 함수 추후 작성
-    public void logIN(String guestId) {
+    public Guest logIN(String guestId) {
         Guest guest = guests.get(guestId);
         if (guest != null) {
-
+            System.out.println("로그인 되었습니다.");
+        } else {
+            System.out.println("id를 다시 확인해주세요.");
         }
+        return guest;
     }
 }
