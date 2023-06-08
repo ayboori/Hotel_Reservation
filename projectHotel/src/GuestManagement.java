@@ -1,6 +1,7 @@
 import java.time.OffsetDateTime;
 import java.util.Scanner;
 import java.util.UUID;
+import java.util.Scanner;
 
 public class GuestManagement implements Management {
 
@@ -13,7 +14,22 @@ public class GuestManagement implements Management {
 
     @Override
     public void showReservationList() {
-        // TODO Auto-generated method stub
+        if (allReservation.getReservaitonHashMap().isEmpty()) {
+            System.out.println("현재 예약이 없습니다.");
+            return;
+        }
+
+        System.out.println("예약 번호를 입력하세요:");
+        Scanner scanner = new Scanner(System.in);
+        String reservationId = scanner.nextLine();
+
+        if (allReservation.getReservaitonHashMap().containsKey(reservationId)) {//예약 번호가 존재하는 지 확인
+            System.out.println("선택한 예약 정보:");
+            Reservation selectedReservation = allReservation.getReservaitonHashMap().get(reservationId);
+            System.out.println(selectedReservation.toString());
+        } else {
+            System.out.println("예약 번호가 올바르지 않습니다.");
+        }
     }
 
     public void cancelReservation(String ReservationNumber) {
