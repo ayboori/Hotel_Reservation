@@ -1,17 +1,10 @@
-public class Reservaiton {
+public class Reservation {
 
-    private Guest guest;
+    private String guestName;
+    private String phoneNum;
     private int roomNum;
     private String reservationDate;
     private String reservationId;
-
-    public Guest getGuest() {
-        return guest;
-    }
-    public void setGuest(Guest guest) {
-        this.guest = guest;
-    }
-
     public int getRoomNum() {
         return roomNum;
     }
@@ -33,10 +26,16 @@ public class Reservaiton {
         this.reservationId = reservationId;
     }
 
-    public Reservaiton(Guest guest, int roomNum, String reservationDate, String reservationId) {
-        this.guest = guest;
+    public Reservation(Guest guest, int roomNum, String reservationDate, String reservationId) {
+        this.guestName = guest.getGuestName();
+        this.phoneNum = guest.getPhoneNum();
         this.roomNum = roomNum;
         this.reservationDate = reservationDate;
         this.reservationId = reservationId;
+    }
+
+    public String toString(Guest guest, int roomNum, String reservationDate) {
+        return String.format("예약자 분 성함 : %s\n예약자 분 전화번호 : %s\n예약한 방 번호 : %d\n예약일자 : %s",
+                guest.getGuestName(), guest.getPhoneNum(), roomNum, reservationDate);
     }
 }
