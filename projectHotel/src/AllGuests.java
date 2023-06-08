@@ -1,28 +1,33 @@
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.UUID;
 public class AllGuests {
-	HashMap<String,Guest> guests = new HashMap<String,Guest>();
-	
+    HashMap<String,Guest> guests = new HashMap<String,Guest>();
     public void makeGuest() {
         System.out.println("\n------------------------------------------------\n");
         Scanner sc = new Scanner(System.in);
-        System.out.println("ÀÌ¸§À» ÀÔ·ÂÇØ ÁÖ¼¼¿ä.");
-        String guestName = sc.next();
-        System.out.println("ÀüÈ­¹øÈ£¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä.");
-        String phoneNum = sc.next();
-        
-        // uid ºÎºĞ ÃßÈÄ ±¸Çö, ¿ì¼± ÀÓÀÇÀÇ °ª »ğÀÔ
-        String guestId = "1";
-        
-        //¼ÒÁö±İ ÀÔ·Â ¹Ş±â
-        System.out.println("¼ÒÁö±İÀ» ÀÔ·ÂÇØ ÁÖ¼¼¿ä.");
+        System.out.println("ì´ë¦„ì„ ì…ë ¥í•´ ì£¼ì„¸ìš”.");
+        String guestName = sc.nextLine();
+        System.out.println("ì „í™”ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš”. ex) 010-1234-5678");
+        String phoneNum = sc.nextLine();
+        // idëŠ” ì‚¬ìš©ì ì´ë¦„ + uuid 4ê¸€ì
+        String guestId = guestName + UUID.randomUUID().toString().substring(0, 4);
+        //ì†Œì§€ê¸ˆ ì…ë ¥ ë°›ê¸°
+        System.out.println("ì†Œì§€ê¸ˆì„ ì…ë ¥í•´ ì£¼ì„¸ìš”.");
         int money = sc.nextInt();
         Guest guest = new Guest(guestName, phoneNum, money,guestId);
-        
-        // ÀüÃ¼ °Ô½ºÆ® ¸ñ·Ï¿¡ Ãß°¡
+        // ì „ì²´ ê²ŒìŠ¤íŠ¸ ëª©ë¡ì— ì¶”ê°€
         guests.put(guestId,guest);
     }
-    
-    // ·Î±×ÀÎ ±â´É ±¸ÇöÇØº¸±â
-    // »ç¿ëÀÚ°¡ id ÀÔ·ÂÇÏ¸é Guest °´Ã¼¸¦ returnÇÏ¿© ·Î±×ÀÎÇÏ´Â ÇÔ¼ö ÃßÈÄ ÀÛ¼º
+    // ë¡œê·¸ì¸ ê¸°ëŠ¥ êµ¬í˜„í•´ë³´ê¸°
+    // ì‚¬ìš©ìê°€ id ì…ë ¥í•˜ë©´ Guest ê°ì²´ë¥¼ returní•˜ì—¬ ë¡œê·¸ì¸í•˜ëŠ” í•¨ìˆ˜
+    public Guest logIN(String guestId) {
+        Guest guest = guests.get(guestId);
+        if (guest != null) {
+            System.out.println("ë¡œê·¸ì¸ ë˜ì—ˆìŠµë‹ˆë‹¤.");
+        } else {
+            System.out.println("idë¥¼ ë‹¤ì‹œ í™•ì¸í•´ì£¼ì„¸ìš”.");
+        }
+        return guest;
+    }
 }

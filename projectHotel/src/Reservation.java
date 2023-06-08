@@ -1,11 +1,10 @@
 public class Reservation {
 
-	private String guestName;
-	private String phoneNum;
+    private String guestName;
+    private String phoneNum;
     private int roomNum;
     private String reservationDate;
     private String reservationId;
-    
     public int getRoomNum() {
         return roomNum;
     }
@@ -35,7 +34,7 @@ public class Reservation {
         this.reservationId = reservationId;
     }
 
-    public String toString() {
+    public String toString(Guest guest, int roomNum, String reservationDate) {
         return String.format("예약자 분 성함 : %s\n예약자 분 전화번호 : %s\n예약한 방 번호 : %d\n예약일자 : %s",
                 guest.getGuestName(), guest.getPhoneNum(), roomNum, reservationDate);
     }
