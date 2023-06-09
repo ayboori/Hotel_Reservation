@@ -101,11 +101,20 @@ public class Main {
         // 방 가격 절사 인스턴스 생성
         DecimalFormat df = new DecimalFormat("###,###");
 
+
         // 호텔 방 목록
         for (Room room : hotelRooms) {
             int amount = room.getPrice();
+            String isAvailable;
+            if(room.isAvailable()) {
+                isAvailable = "[ 빈방입니다 ]";
+            } else {
+                isAvailable = "[ 이미 예약된 방입니다 ]";
+            }
+
             String roomPrice = df.format(amount);
-            String roomInfo = String.format("사이즈: %s      가격: %s      객실 번호: %d", room.getSize(), roomPrice + " 원", room.getRoomNumber());
+            String roomInfo = String.format("사이즈: %s      가격: %s      객실 번호: %d      %s",
+                    room.getSize(), roomPrice + " 원", room.getRoomNumber(), isAvailable);
             System.out.println(roomInfo);
         }
     }
