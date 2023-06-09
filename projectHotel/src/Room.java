@@ -12,7 +12,6 @@ public class Room {
         this.size = size;
     }
 
-
     public int getPrice() {
         return price;
     }

@@ -1,4 +1,5 @@
 public class Guest {
+	
     private String guestId;
     private String guestName;
     private String phoneNum;

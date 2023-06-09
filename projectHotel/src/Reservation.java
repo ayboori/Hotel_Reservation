@@ -5,6 +5,8 @@ public class Reservation {
     private int roomNum;
     private String reservationDate;
     private String reservationId;
+    public String getGuestName() {return guestName;} //추가
+    public String getPhoneNum() {return phoneNum;} //추가
     public int getRoomNum() {
         return roomNum;
     }
