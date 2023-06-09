@@ -4,7 +4,7 @@ import java.util.Scanner;
 import java.util.UUID;
 import java.util.Scanner;
 
-public class GuestManagement implements Management {
+public class GuestManagement implements Management, AllObjects {
 
     AllReservation allReservation;
     Reservation reservation;
@@ -23,8 +23,7 @@ public class GuestManagement implements Management {
         }
 
         System.out.println("예약 번호를 입력하세요:");
-        Scanner scanner = new Scanner(System.in);
-        String reservationId = scanner.nextLine();
+        String reservationId = sc.nextLine();
 
         if (allReservation.getReservaitonHashMap().containsKey(reservationId)) {//예약 번호가 존재하는 지 확인
             System.out.println("선택한 예약 정보:");
@@ -36,8 +35,6 @@ public class GuestManagement implements Management {
         }
     }
 
-    Scanner sc = new Scanner(System.in);
-
     public void cancelReservation(String ReservationNumber) {
     	System.out.println("예약을 취소하시겠습니까? y/n");
 
@@ -48,6 +45,8 @@ public class GuestManagement implements Management {
 	    	switch (answer) {
 	    		case "y":
 	    			allReservation.getReservaitonHashMap().remove(ReservationNumber);
+	                //guest.setMoney(guest.getMoney() + roomPrice); // 손님 소지금 방 가격만큼 플러스
+	               // hotel.setAsset(hotel.getAsset() - roomPrice); // 호텔 보유자산에 방 가격 마이너스
 	    			System.out.println("예약이 취소되었습니다.\n 3초 뒤 메인 화면으로 연결됩니다.");
 	    			Thread.sleep(3000);
 	    			return;
@@ -64,7 +63,7 @@ public class GuestManagement implements Management {
     	}    	
     }
 
-    public void doReservation(Guest guest, Hotel hotel) {
+    public void doReservation(Guest guest) {
         while (true) {
             // 예약할 객실 입력받기
             System.out.println("예약할 객실 번호를 입력해 주세요.");

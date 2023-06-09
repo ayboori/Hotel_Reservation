@@ -3,7 +3,7 @@ import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
 
-public class HotelManagement implements Management {
+public class HotelManagement implements Management,AllObjects {
 	AllReservation allReservation;
    
 	HotelManagement(AllReservation allReservation){

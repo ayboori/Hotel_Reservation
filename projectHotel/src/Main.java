@@ -2,19 +2,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class Main {
+public class Main implements AllObjects {
+	
     public static void main(String[] args) {
 
-        // 방 정보 입력 및 목록 명시
+        // 방 정보 입력 및 목록 명시 - 인터페이스로 분리했음
         Scanner scanner = new Scanner(System.in);
-        AllReservation allReservation = new AllReservation(new HashMap<>());
-        GuestManagement guestManagement = new GuestManagement(allReservation);
-        HotelManagement hotelManagement = new HotelManagement(allReservation);
-        Guest guest = new Guest();
-
-        AllGuests allGuests = new AllGuests();
-        Hotel hotel = new Hotel(0);
-        Main main = new Main(); // 무한루프로 객체 생성할 필요는 없어서 밖으로 뺐음
+//        AllReservation allReservation = new AllReservation(new HashMap<>());
+//        GuestManagement guestManagement = new GuestManagement(allReservation);
+//        HotelManagement hotelManagement = new HotelManagement(allReservation);
+//      AllGuests allGuests = new AllGuests();
+//      Hotel hotel = new Hotel(0);
+//      Main main = new Main(); // 무한루프로 객체 생성할 필요는 없어서 밖으로 뺐음
+        
+        Guest guest = new Guest(); // main에서 로그인하면서 초기화해야해서 어쩔 수 없이 main에 작성함
         
         System.out.println("안녕하십니까? 최상의 서비스로 여러분을 맞이합니다.");
         System.out.println("기존 저희 호텔 회원이라면 로그인을 해주십시오.");
@@ -64,7 +65,7 @@ public class Main {
                 case 1:
                     // 예약하기 메서드 (예약할 때마다 자산 추가)
                     main.displayRoom(hotel); // 호출 방식 생각해보기
-                	guestManagement.doReservation(guest,hotel);
+                	guestManagement.doReservation(guest);
                     break;
                 case 2:
                     // 예약조회 메서드
@@ -82,8 +83,7 @@ public class Main {
                 default:
                     System.out.println("잘못된 번호입니다. 다시 입력해주세요.");
             }
-        }
-        
+        }        
     }
 
     public void displayRoom(Hotel hotel) {
