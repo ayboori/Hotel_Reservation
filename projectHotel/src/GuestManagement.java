@@ -16,7 +16,7 @@ public class GuestManagement implements Management, AllObjects {
     Scanner sc = new Scanner(System.in);
 
     @Override
-    public void showReservationList() {
+    public void showReservationList(Guest guest, Hotel hotel) {
         if (allReservation.getReservaitonHashMap().isEmpty()) {
             System.out.println("현재 예약이 없습니다.");
             return;
@@ -25,10 +25,14 @@ public class GuestManagement implements Management, AllObjects {
         System.out.println("예약 번호를 입력하세요:");
         String reservationId = sc.nextLine();
 
-        if (allReservation.getReservaitonHashMap().containsKey(reservationId)) {//예약 번호가 존재하는 지 확인
+        if (allReservation.getReservaitonHashMap().containsKey(reservationId)) {
             System.out.println("선택한 예약 정보:");
             Reservation selectedReservation = allReservation.getReservaitonHashMap().get(reservationId);
-            System.out.println(selectedReservation.toString()); // 수정하기
+            System.out.println("예약자 분 성함: " + selectedReservation.getGuestName());
+            System.out.println("예약자 분 전화번호: " + selectedReservation.getPhoneNum());
+            System.out.println("예약한 방 번호: " + selectedReservation.getRoomNum());
+            System.out.println("예약일자: " + selectedReservation.getReservationDate());  // 수정본
+            //System.out.println(selectedReservation.toString()); // 수정하기
             cancelReservation(reservationId);
         } else {
             System.out.println("예약 번호가 올바르지 않습니다.");
@@ -68,19 +72,20 @@ public class GuestManagement implements Management, AllObjects {
             // 예약할 객실 입력받기
             System.out.println("예약할 객실 번호를 입력해 주세요.");
             int roomNum = sc.nextInt();
-
-            // 고객이 선택한 객실 가격
-            Room selectedRoom = hotel.getRooms().get(roomNum - 1);
-            int roomPrice = selectedRoom.getPrice();
-
-            // 객실 목록 출력으로 돌아가기
             if (roomNum < 1 || roomNum > hotel.getRooms().size()) {
-                System.out.println("올바른 객실 번호를 입력해 주세요.");
+                System.out.println("올바른 객실 번호를 입력해 주세요.\n");
                 continue;
-            } else if (!selectedRoom.isAvailable()) { // 객실 예약 불가 상태
-                System.out.println("선택하신 객실은 예약 불가 상태입니다.");
+            }
+            // 고객이 선택한 객실
+            Room selectedRoom = hotel.getRooms().get(roomNum - 1);
+            // 객실 예약 불가 상태
+            if (!selectedRoom.isAvailable()) {
+                System.out.println("선택하신 객실은 예약 불가 상태입니다.\n");
                 continue;
-            } else if (guest.getMoney() < roomPrice) { // (고객 소지금 < 숙박비) 예약 불가
+            }
+            // 선택한 객실 가격
+            int roomPrice = selectedRoom.getPrice();
+            if (guest.getMoney() < roomPrice) { // (고객 소지금 < 숙박비) 예약 불가
                 System.out.println("소지금 보다 비싼 방은 예약할 수 없습니다.");
                 return;
             }
@@ -89,7 +94,6 @@ public class GuestManagement implements Management, AllObjects {
                 guest.setMoney(guest.getMoney() - roomPrice); // 손님 소지금 방 가격만큼 마이너스
                 hotel.setAsset(hotel.getAsset() + roomPrice); // 호텔 보유자산에 방 가격 추가
 
-
                 // 현재 날짜
                 OffsetDateTime now = OffsetDateTime.now();
                 String nowString = String.valueOf(now.withNano(0));
@@ -97,13 +101,27 @@ public class GuestManagement implements Management, AllObjects {
                 String reservationId = UUID.randomUUID().toString();
 
                 Reservation reservation = new Reservation(guest, selectedRoom.getRoomNumber(), nowString, reservationId);
-               
-                
+              
+                // 예약된 객실 이용 불가로 변경
+                selectedRoom.setAvailable(false);
+
                 // 전체 에약 목록에 방금 생성한 예약 객체 추가
                 allReservation.getReservaitonHashMap().put(reservationId, reservation);
 
-                System.out.println("예약이 완료되었습니다.\n 예약 번호는 : " + reservationId + "입니다." );
+                System.out.println("예약이 완료되었습니다.\n 예약 번호는 : [ " + reservationId + " ] 입니다.");
 
+                // 전체 에약 목록에 방금 생성한 예약 객체 추가 // 의사결정
+                System.out.println("예약을 하시겠습니까 ?");
+                System.out.println("1. 예약 하기     2. 돌아가기");
+                int confirmNum = sc.nextInt();
+                if (confirmNum == 1) {
+                    allReservation.getReservaitonHashMap().put(reservationId, reservation);
+                    System.out.println("예약이 완료되었습니다.\n예약 번호는 : " + reservationId + "입니다." );
+                } else if (confirmNum == 2) {
+                    System.out.println("예약이 취소되었습니다.");
+                }
+
+                System.out.println("\n3초 뒤 메인 화면으로 돌아갑니다.");
                 Thread.sleep(3000);
                 break;
             } catch (InterruptedException e) {
