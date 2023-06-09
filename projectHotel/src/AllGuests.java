@@ -1,7 +1,5 @@
-import java.util.HashMap;
-import java.util.Scanner;
-import java.util.SortedMap;
-import java.util.UUID;
+import java.util.*;
+
 public class AllGuests {
     HashMap<String,Guest> guests = new HashMap<String,Guest>();
     public void makeGuest() {
@@ -31,10 +29,14 @@ public class AllGuests {
     // 사용자가 id 입력하면 Guest 객체를 return하여 로그인하는 함수
     public Guest logIN(String guestId) {
         Guest guest = guests.get(guestId);
-        if (guest != null) {
-            System.out.println("로그인 되었습니다.");
-        } else {
-            System.out.println("id를 다시 확인해주세요.");
+        try {
+            if (guest != null) {
+                System.out.println("로그인 되었습니다.");
+            } else {
+                System.out.println("id를 다시 확인해주세요.");
+            }
+        } catch (InputMismatchException e) {
+            throw new RuntimeException(e);
         }
         return guest;
     }

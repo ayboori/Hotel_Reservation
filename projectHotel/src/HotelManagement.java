@@ -3,15 +3,9 @@ import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
 
-public class HotelManagement implements Management {
-    AllReservation allReservation;
-    GuestManagement guestManagement;
-//    Guest guest = new Guest();
-//    Hotel hotel = new Hotel(); // 이러면 객체 초기화가 일어나서 게스트와 호텔목록이 null로 출력됨
+public class HotelManagement implements Management , AllObjects{
 
-    HotelManagement(AllReservation allReservation){
-        this.allReservation = allReservation;
-    }
+    HotelManagement() {}
 
     @Override
     public void showReservationList(Guest guest, Hotel hotel) {
@@ -41,7 +35,6 @@ public class HotelManagement implements Management {
                         Thread.sleep(3000); // 3초 정지 후 프로그램 종료
                         return;
                     } else if (check == 2) {
-                        guestManagement = new GuestManagement(allReservation);
                         guestManagement.showReservationList(guest, hotel);
                         break;
                     } else { // 다른 숫자를 입력받았을 때
