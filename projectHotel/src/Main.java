@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -65,7 +66,7 @@ public class Main {
             switch (choiceNum) {
                 case 1:
                     // 예약하기 메서드 (예약할 때마다 자산 추가)
-                    main.displayRoom(hotel); // 호출 방식 생각해보기
+                    main.displayRoom(hotel);
                 	guestManagement.doReservation(guest,hotel);
                     break;
                 case 2:
@@ -98,6 +99,7 @@ public class Main {
         // Hotel 인스턴스 생성
         hotel.setRooms(roomList);
         ArrayList<Room> hotelRooms = hotel.getRooms();
+      
     }
     public void displayRoom(Hotel hotel) {
         // 호텔 방 목록 출력

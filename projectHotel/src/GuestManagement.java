@@ -36,8 +36,6 @@ public class GuestManagement implements Management {
         }
     }
 
-//    Scanner sc = new Scanner(System.in);
-
     public void cancelReservation(String ReservationNumber) {
         System.out.println("예약을 취소하시겠습니까? y/n");
 
@@ -98,6 +96,7 @@ public class GuestManagement implements Management {
                 String reservationId = UUID.randomUUID().toString();
 
                 Reservation reservation = new Reservation(guest, selectedRoom.getRoomNumber(), nowString, reservationId);
+              
                 // 예약된 객실 이용 불가로 변경
                 selectedRoom.setAvailable(false);
 
@@ -106,6 +105,18 @@ public class GuestManagement implements Management {
 
                 System.out.println("예약이 완료되었습니다.\n 예약 번호는 : [ " + reservationId + " ] 입니다.");
 
+                // 전체 에약 목록에 방금 생성한 예약 객체 추가 // 의사결정
+                System.out.println("예약을 하시겠습니까 ?");
+                System.out.println("1. 예약 하기     2. 돌아가기");
+                int confirmNum = sc.nextInt();
+                if (confirmNum == 1) {
+                    allReservation.getReservaitonHashMap().put(reservationId, reservation);
+                    System.out.println("예약이 완료되었습니다.\n예약 번호는 : " + reservationId + "입니다." );
+                } else if (confirmNum == 2) {
+                    System.out.println("예약이 취소되었습니다.");
+                }
+
+                System.out.println("\n3초 뒤 메인 화면으로 돌아갑니다.");
                 Thread.sleep(3000);
                 break;
             } catch (InterruptedException e) {
