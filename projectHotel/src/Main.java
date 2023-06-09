@@ -104,10 +104,8 @@ public class Main implements AllObjects {
     public void displayRoom(Hotel hotel) {
         // 방 가격 절사 인스턴스 생성
         DecimalFormat df = new DecimalFormat("###,###");
-
-
         // 호텔 방 목록
-        for (Room room : hotelRooms) {
+        for (Room room : hotel.getRooms()) {
             int amount = room.getPrice();
             String isAvailable;
             if(room.isAvailable()) {
@@ -119,6 +117,7 @@ public class Main implements AllObjects {
             String roomPrice = df.format(amount);
             String roomInfo = String.format("사이즈: %s      가격: %s      객실 번호: %d      %s",
                     room.getSize(), roomPrice + " 원", room.getRoomNumber(), isAvailable);
+            System.out.println(roomInfo);
         }
     }
 }
