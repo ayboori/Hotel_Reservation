@@ -1,23 +1,19 @@
 public class Guest {
-	
     private String guestId;
     private String guestName;
     private String phoneNum;
     private int money;
-//    private String guestId;
-
+    //    private String guestId;
     public String getGuestName() {return guestName;}
     public void setGuestName(String guestName) {
         this.guestName = guestName;
     }
-
     public String getPhoneNum() {
         return phoneNum;
     }
     public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
     }
-
     public int getMoney() {
         return money;
     }
@@ -28,15 +24,11 @@ public class Guest {
     public void setGuestId(String guestId) {
         this.guestId = guestId;
     }
-
     public Guest() {
-    	
     }
-
-    public Guest(String guestName, String phoneNum, int money, String guestId) {
+    public Guest(String guestName, String phoneNum, int money) {
         this.guestName = guestName;
         this.phoneNum = phoneNum;
         this.money = money;
-        this.guestId = guestId;
     }
 }
