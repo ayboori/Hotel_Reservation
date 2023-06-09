@@ -50,7 +50,7 @@ public class GuestManagement implements Management, AllObjects {
 
         // 선택한 객실 가격
         int roomPrice = selectedRoom.getPrice();
-
+      
         //예약 취소 여부를 무한 루프로 받음 (잘못된 값은 다시 입력받도록)
         try {
             while(true) {
