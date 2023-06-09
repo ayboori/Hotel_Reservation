@@ -33,10 +33,9 @@ public class Guest {
     	
     }
 
-    public Guest(String guestName, String phoneNum, int money, String guestId) {
+    public Guest(String guestName, String phoneNum, int money) {
         this.guestName = guestName;
         this.phoneNum = phoneNum;
         this.money = money;
-        this.guestId = guestId;
     }
 }

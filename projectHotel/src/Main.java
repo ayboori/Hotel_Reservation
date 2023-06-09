@@ -36,6 +36,8 @@ public class Main implements AllObjects {
                     guest = allGuests.logIN(inputId);
                     if (guest == null) {
                         continue;
+                    } else if (guest.equals("hotel")) {
+                        System.out.println("호텔 매니저님 안녕하세요.");
                     }
                     break;
                 case 2:

@@ -21,7 +21,7 @@ public class GuestManagement implements Management, AllObjects {
             System.out.println("현재 예약이 없습니다.");
             return;
         }
-
+        sc.nextLine();
         System.out.println("예약 번호를 입력하세요:");
         String reservationId = sc.nextLine();
 
