@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -19,6 +20,8 @@ public class Main {
         System.out.println("안녕하십니까? 최상의 서비스로 여러분을 맞이합니다.");
         System.out.println("기존 저희 호텔 회원이라면 로그인을 해주십시오.");
         System.out.println("처음이신가요? 회원가입을 통해 최상의 서비스를 누려보세요 !");
+
+        main.createRoom(hotel);
 
         // 로그인 의사결정
         while (true) {
@@ -63,7 +66,7 @@ public class Main {
             switch (choiceNum) {
                 case 1:
                     // 예약하기 메서드 (예약할 때마다 자산 추가)
-                    main.displayRoom(hotel); // 호출 방식 생각해보기
+                    main.displayRoom(hotel);
                 	guestManagement.doReservation(guest,hotel);
                     break;
                 case 2:
@@ -86,7 +89,7 @@ public class Main {
         
     }
 
-    public void displayRoom(Hotel hotel) {
+    public void createRoom(Hotel hotel) {
         // 방 정보 삽입
         ArrayList<Room> roomList = new ArrayList<>();
         roomList.add(new Room(300, 3000000, 1));
@@ -96,12 +99,26 @@ public class Main {
         // Hotel 인스턴스 생성
         hotel.setRooms(roomList);
         ArrayList<Room> hotelRooms = hotel.getRooms();
+    }
+      
+    public void displayRoom(Hotel hotel) {
+        // 방 가격 절사 인스턴스 생성
+        DecimalFormat df = new DecimalFormat("###,###");
+
 
         // 호텔 방 목록
-        for (Room room : hotelRooms) { // 추후 디자인 수정
-            String roomInfo = String.format("사이즈: %s      가격: %d      객실 번호: %d",
-                    room.getSize(), room.getPrice(), room.getRoomNumber());
-            System.out.println(roomInfo);
+        for (Room room : hotelRooms) {
+            int amount = room.getPrice();
+            String isAvailable;
+            if(room.isAvailable()) {
+                isAvailable = "\u001B[32m"+ "[ 빈방입니다 ]" + "\u001B[0m";
+            } else {
+                isAvailable = "\u001B[31m" + "[ 이미 예약된 방입니다 ]" + "\u001B[0m";
+            }
+
+            String roomPrice = df.format(amount);
+            String roomInfo = String.format("사이즈: %s      가격: %s      객실 번호: %d      %s",
+                    room.getSize(), roomPrice + " 원", room.getRoomNumber(), isAvailable);
         }
     }
 }
