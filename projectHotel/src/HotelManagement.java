@@ -1,4 +1,3 @@
-import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
@@ -6,7 +5,6 @@ import java.util.Scanner;
 public class HotelManagement implements Management, AllObjects {
     AllReservation allReservation;
     GuestManagement guestManagement;
-
     HotelManagement() {}
 
     @Override
