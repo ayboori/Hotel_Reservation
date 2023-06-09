@@ -92,9 +92,13 @@ public class Main implements AllObjects {
     public void createRoom(Hotel hotel) {
         // 방 정보 삽입
         ArrayList<Room> roomList = new ArrayList<>();
-        roomList.add(new Room(300, 3000000, 1));
+        roomList.add(new Room(500, 5000000, 1));
         roomList.add(new Room(400, 4000000, 2));
-        roomList.add(new Room(250, 2000000, 3));
+        roomList.add(new Room(350, 3000000, 3));
+        roomList.add(new Room(300, 2500000, 4));
+        roomList.add(new Room(250, 2000000, 5));
+        roomList.add(new Room(200, 1500000, 6));
+        roomList.add(new Room(100, 1000000, 7));
 
         // Hotel 인스턴스 생성
         hotel.setRooms(roomList);
