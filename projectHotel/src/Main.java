@@ -107,9 +107,9 @@ public class Main {
             int amount = room.getPrice();
             String isAvailable;
             if(room.isAvailable()) {
-                isAvailable = "[ 빈방입니다 ]";
+                isAvailable = "\u001B[32m"+ "[ 빈방입니다 ]" + "\u001B[0m";
             } else {
-                isAvailable = "[ 이미 예약된 방입니다 ]";
+                isAvailable = "\u001B[31m" + "[ 이미 예약된 방입니다 ]" + "\u001B[0m";
             }
 
             String roomPrice = df.format(amount);
