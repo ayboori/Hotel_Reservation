@@ -2,7 +2,7 @@ import java.util.*;
 public class AllGuests {
     HashMap<String,Guest> guests = new HashMap<String,Guest>();
     public void addGusets() {
-        guests.put("hotel", new Guest());
+        guests.put("hotel", new Guest("호텔 매니저", "010-1234-5678", 1000000000));
         guests.put("hjh3229", new Guest("한지훈", "010-3229-8290", 3000000));
         guests.put("sepang-pang", new Guest("오세창", "010-XXXX-XXXX", 4000000));
         guests.put("ayboori", new Guest("조아영", "010-XXXX-XXXX", 10000000));
