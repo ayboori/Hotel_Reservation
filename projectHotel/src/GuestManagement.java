@@ -26,17 +26,21 @@ public class GuestManagement implements Management {
         Scanner scanner = new Scanner(System.in);
         String reservationId = scanner.nextLine();
 
-        if (allReservation.getReservaitonHashMap().containsKey(reservationId)) {//예약 번호가 존재하는 지 확인
+        if (allReservation.getReservaitonHashMap().containsKey(reservationId)) {
             System.out.println("선택한 예약 정보:");
             Reservation selectedReservation = allReservation.getReservaitonHashMap().get(reservationId);
-            System.out.println(selectedReservation.toString()); // 수정하기
+            System.out.println("예약자 분 성함: " + selectedReservation.getGuestName());
+            System.out.println("예약자 분 전화번호: " + selectedReservation.getPhoneNum());
+            System.out.println("예약한 방 번호: " + selectedReservation.getRoomNum());
+            System.out.println("예약일자: " + selectedReservation.getReservationDate());  // 수정본
+            //System.out.println(selectedReservation.toString()); // 수정하기
             cancelReservation(reservationId);
         } else {
             System.out.println("예약 번호가 올바르지 않습니다.");
         }
     }
 
-    Scanner sc = new Scanner(System.in);
+    Scanner sca = new Scanner(System.in); // 중복
 
     public void cancelReservation(String ReservationNumber) {
     	System.out.println("예약을 취소하시겠습니까? y/n");
