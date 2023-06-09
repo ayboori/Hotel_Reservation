@@ -7,6 +7,7 @@ public class Guest {
 //    private String guestId;
 
     public String getGuestName() {return guestName;}
+    
     public void setGuestName(String guestName) {
         this.guestName = guestName;
     }
@@ -14,6 +15,7 @@ public class Guest {
     public String getPhoneNum() {
         return phoneNum;
     }
+    
     public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
     }

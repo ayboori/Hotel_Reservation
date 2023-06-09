@@ -9,12 +9,6 @@ public class Main implements AllObjects {
 
         // 방 정보 입력 및 목록 명시 - 인터페이스로 분리했음
         Scanner scanner = new Scanner(System.in);
-//        AllReservation allReservation = new AllReservation(new HashMap<>());
-//        GuestManagement guestManagement = new GuestManagement(allReservation);
-//        HotelManagement hotelManagement = new HotelManagement(allReservation);
-//      AllGuests allGuests = new AllGuests();
-//      Hotel hotel = new Hotel(0);
-//      Main main = new Main(); // 무한루프로 객체 생성할 필요는 없어서 밖으로 뺐음
         
         Guest guest = new Guest(); // main에서 로그인하면서 초기화해야해서 어쩔 수 없이 main에 작성함
         
@@ -73,7 +67,8 @@ public class Main implements AllObjects {
                     break;
                 case 2:
                     // 예약조회 메서드
-                	guestManagement.showReservationList(guest, hotel);
+                	scanner.nextLine(); // nextInt 다음에 nextLine 호출해서 처음에 값이 제대로 되지 않았다고 출력되는 문제 수정함
+                	guestManagement.showReservationList(guest);
                 	//예약 취소 메소드
                     break;
                 case 3:
@@ -82,7 +77,7 @@ public class Main implements AllObjects {
                     return;
                 case 0:
                     // 관리자 모드 => 모든 예약 조회
-                	hotelManagement.showReservationList(guest, hotel);
+                	hotelManagement.showReservationList(guest);
                     break;
                 default:
                     System.out.println("잘못된 번호입니다. 다시 입력해주세요.");

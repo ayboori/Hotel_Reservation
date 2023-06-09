@@ -3,7 +3,7 @@ import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
 
-public class HotelManagement implements Management {
+public class HotelManagement implements Management, AllObjects {
     AllReservation allReservation;
     GuestManagement guestManagement;
 //    Guest guest = new Guest();
@@ -14,7 +14,7 @@ public class HotelManagement implements Management {
     }
 
     @Override
-    public void showReservationList(Guest guest, Hotel hotel) {
+    public void showReservationList(Guest guest) {
         while (true) {
             if (allReservation.getReservaitonHashMap().isEmpty()) { // 예약 목록이 없으면
                 System.out.println("현재 예약이 없습니다.");
@@ -42,7 +42,7 @@ public class HotelManagement implements Management {
                         return;
                     } else if (check == 2) {
                         guestManagement = new GuestManagement(allReservation);
-                        guestManagement.showReservationList(guest, hotel);
+                        guestManagement.showReservationList(guest);
                         break;
                     } else { // 다른 숫자를 입력받았을 때
                         System.out.println("잘못된 입력입니다.");
