@@ -16,7 +16,7 @@ public class GuestManagement implements Management {
     Scanner sc = new Scanner(System.in);
 
     @Override
-    public void showReservationList() {
+    public void showReservationList(Guest guest, Hotel hotel) {
         if (allReservation.getReservaitonHashMap().isEmpty()) {
             System.out.println("현재 예약이 없습니다.");
             return;
