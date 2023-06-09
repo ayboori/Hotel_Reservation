@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main implements AllObjects {
-	
+
     public static void main(String[] args) {
 
         // 방 정보 입력 및 목록 명시 - 인터페이스로 분리했음
@@ -31,7 +31,7 @@ public class Main implements AllObjects {
             switch (choiceNum) {
                 case 1:
                     // 로그인 메서드
-                	System.out.println("로그인 하실 아이디를 입력해주세요.");
+                    System.out.println("로그인 하실 아이디를 입력해주세요.");
                     String inputId = scanner.next();
                     guest = allGuests.logIN(inputId);
                     if (guest == null) {
@@ -68,12 +68,12 @@ public class Main implements AllObjects {
                 case 1:
                     // 예약하기 메서드 (예약할 때마다 자산 추가)\
                     main.displayRoom(hotel);
-                	guestManagement.doReservation(guest);
+                    guestManagement.doReservation(guest);
                     break;
                 case 2:
                     // 예약조회 메서드
-                	guestManagement.showReservationList(guest, hotel);
-                	//예약 취소 메소드
+                    guestManagement.showReservationList(guest, hotel);
+                    //예약 취소 메소드
                     break;
                 case 3:
                     // 종료
@@ -81,8 +81,8 @@ public class Main implements AllObjects {
                     return;
                 case 0:
                     // 관리자 모드 => 모든 예약 조회
-                	hotelManagement.showReservationList(guest, hotel);
-                    break;
+                    hotelManagement.showReservationList(guest, hotel);
+                    return;
                 default:
                     System.out.println("잘못된 번호입니다. 다시 입력해주세요.");
             }
@@ -107,7 +107,7 @@ public class Main implements AllObjects {
 
 
         // 호텔 방 목록
-        for (Room room : hotelRooms) {
+        for (Room room : hotel.getRooms()) {
             int amount = room.getPrice();
             String isAvailable;
             if(room.isAvailable()) {
@@ -119,6 +119,7 @@ public class Main implements AllObjects {
             String roomPrice = df.format(amount);
             String roomInfo = String.format("사이즈: %s      가격: %s      객실 번호: %d      %s",
                     room.getSize(), roomPrice + " 원", room.getRoomNumber(), isAvailable);
+            System.out.println(roomInfo);
         }
     }
 }
