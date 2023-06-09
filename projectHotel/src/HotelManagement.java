@@ -6,12 +6,8 @@ import java.util.Scanner;
 public class HotelManagement implements Management, AllObjects {
     AllReservation allReservation;
     GuestManagement guestManagement;
-//    Guest guest = new Guest();
-//    Hotel hotel = new Hotel(); // 이러면 객체 초기화가 일어나서 게스트와 호텔목록이 null로 출력됨
 
-    HotelManagement(AllReservation allReservation){
-        this.allReservation = allReservation;
-    }
+    HotelManagement() {}
 
     @Override
     public void showReservationList(Guest guest) {

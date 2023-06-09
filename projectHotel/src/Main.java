@@ -1,10 +1,9 @@
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main implements AllObjects {
-	
+
     public static void main(String[] args) {
 
         // 방 정보 입력 및 목록 명시 - 인터페이스로 분리했음
@@ -25,7 +24,7 @@ public class Main implements AllObjects {
             switch (choiceNum) {
                 case 1:
                     // 로그인 메서드
-                	System.out.println("로그인 하실 아이디를 입력해주세요.");
+                    System.out.println("로그인 하실 아이디를 입력해주세요.");
                     String inputId = scanner.next();
                     guest = allGuests.logIN(inputId);
                     if (guest == null) {
@@ -63,13 +62,13 @@ public class Main implements AllObjects {
                     // 예약하기 메서드 (예약할 때마다 자산 추가)
                 	scanner.nextLine(); // nextInt 다음에 nextLine 호출해서 처음에 값이 제대로 되지 않았다고 출력되는 문제 수정함
                     main.displayRoom(hotel);
-                	guestManagement.doReservation(guest);
+                    guestManagement.doReservation(guest);
                     break;
                 case 2:
                     // 예약조회 메서드
                 	scanner.nextLine(); // nextInt 다음에 nextLine 호출해서 처음에 값이 제대로 되지 않았다고 출력되는 문제 수정함
                 	guestManagement.showReservationList(guest);
-                	//예약 취소 메소드
+                	//예약 취소 메소드 이어서 실행됨
                     break;
                 case 3:
                     // 종료

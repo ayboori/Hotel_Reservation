@@ -3,7 +3,7 @@ import java.util.HashMap;
 public interface AllObjects{
     AllReservation allReservation = new AllReservation(new HashMap<>());
     GuestManagement guestManagement = new GuestManagement(allReservation);
-    HotelManagement hotelManagement = new HotelManagement(allReservation);
+    HotelManagement hotelManagement = new HotelManagement();
 
     AllGuests allGuests = new AllGuests();
     Hotel hotel = new Hotel(0);
