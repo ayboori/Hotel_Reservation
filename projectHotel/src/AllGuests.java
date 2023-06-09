@@ -1,5 +1,4 @@
 import java.util.*;
-
 public class AllGuests {
     HashMap<String,Guest> guests = new HashMap<String,Guest>();
     public void addGusets() {
@@ -20,16 +19,14 @@ public class AllGuests {
         //소지금 입력 받기
         System.out.println("소지금을 입력해 주세요. (단위 : 만원)");
         int money = sc.nextInt() * 10000;
-
         // id는 사용자 이름 + uuid 4글자
         String guestId = guestName + UUID.randomUUID().toString().substring(0, 4);
-        
+
         Guest guest = new Guest(guestName, phoneNum, money);
         // 아이디 명시
         System.out.println("회원가입을 축하합니다 !");
-        System.out.println("고객님의 아이디는 " + "[ " +guest.getGuestId() +" ]"+ " 입니다.");
+        System.out.println("고객님의 아이디는 " + "[ " + guestId +" ]"+ " 입니다.");
         System.out.println("이제 저희 호텔의 다양한 서비스를 이용하실 수 있습니다.");
-
         // 전체 게스트 목록에 추가
         guests.put(guestId,guest);
     }

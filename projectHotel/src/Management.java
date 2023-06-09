@@ -2,5 +2,5 @@ import java.util.HashMap;
 import java.util.Map;
 
 public interface Management {
-    void showReservationList(Guest guest, Hotel hotel);
+    void showReservationList(Guest guest);
 }
