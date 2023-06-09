@@ -66,7 +66,8 @@ public class Main implements AllObjects {
             int choiceNum = scanner.nextInt();
             switch (choiceNum) {
                 case 1:
-                    // 예약하기 메서드 (예약할 때마다 자산 추가)\
+                    // 예약하기 메서드 (예약할 때마다 자산 추가)
+                	scanner.nextLine(); // nextInt 다음에 nextLine 호출해서 처음에 값이 제대로 되지 않았다고 출력되는 문제 수정함
                     main.displayRoom(hotel);
                 	guestManagement.doReservation(guest);
                     break;
@@ -98,16 +99,14 @@ public class Main implements AllObjects {
 
         // Hotel 인스턴스 생성
         hotel.setRooms(roomList);
-        ArrayList<Room> hotelRooms = hotel.getRooms();
     }
       
     public void displayRoom(Hotel hotel) {
         // 방 가격 절사 인스턴스 생성
         DecimalFormat df = new DecimalFormat("###,###");
 
-
         // 호텔 방 목록
-        for (Room room : hotelRooms) {
+        for (Room room : hotel.getRooms()) {
             int amount = room.getPrice();
             String isAvailable;
             if(room.isAvailable()) {
@@ -119,6 +118,7 @@ public class Main implements AllObjects {
             String roomPrice = df.format(amount);
             String roomInfo = String.format("사이즈: %s      가격: %s      객실 번호: %d      %s",
                     room.getSize(), roomPrice + " 원", room.getRoomNumber(), isAvailable);
+            System.out.println(roomInfo);
         }
     }
 }

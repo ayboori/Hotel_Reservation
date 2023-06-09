@@ -26,12 +26,14 @@ public class GuestManagement implements Management, AllObjects {
         String reservationId = sc.nextLine();
 
         if (allReservation.getReservaitonHashMap().containsKey(reservationId)) {
+        	System.out.println("\n==================================================");
             System.out.println("선택한 예약 정보:");
             Reservation selectedReservation = allReservation.getReservaitonHashMap().get(reservationId);
             System.out.println("예약자 분 성함: " + selectedReservation.getGuestName());
             System.out.println("예약자 분 전화번호: " + selectedReservation.getPhoneNum());
             System.out.println("예약한 방 번호: " + selectedReservation.getRoomNum());
             System.out.println("예약일자: " + selectedReservation.getReservationDate());  // 수정본
+        	System.out.println("==================================================");
             //System.out.println(selectedReservation.toString()); // 수정하기
             cancelReservation(reservationId);
         } else {
@@ -108,10 +110,8 @@ public class GuestManagement implements Management, AllObjects {
                 // 전체 에약 목록에 방금 생성한 예약 객체 추가
                 allReservation.getReservaitonHashMap().put(reservationId, reservation);
 
-                System.out.println("예약이 완료되었습니다.\n 예약 번호는 : [ " + reservationId + " ] 입니다.");
-
                 // 전체 에약 목록에 방금 생성한 예약 객체 추가 // 의사결정
-                System.out.println("예약을 하시겠습니까 ?");
+                System.out.println("예약 가능한 방입니다. 예약을 하시겠습니까 ?");
                 System.out.println("1. 예약 하기     2. 돌아가기");
                 int confirmNum = sc.nextInt();
                 if (confirmNum == 1) {
