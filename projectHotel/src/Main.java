@@ -68,7 +68,7 @@ public class Main {
                     break;
                 case 2:
                     // 예약조회 메서드
-                	guestManagement.showReservationList();
+                	guestManagement.showReservationList(guest, hotel);
                 	//예약 취소 메소드
                     break;
                 case 3:
@@ -77,7 +77,7 @@ public class Main {
                     return;
                 case 0:
                     // 관리자 모드 => 모든 예약 조회
-                	hotelManagement.showReservationList();
+                	hotelManagement.showReservationList(guest, hotel);
                     break;
                 default:
                     System.out.println("잘못된 번호입니다. 다시 입력해주세요.");
