@@ -1,3 +1,4 @@
+
 import java.util.HashMap;
 
 public class AllReservation {
@@ -15,10 +16,15 @@ public class AllReservation {
     public AllReservation(HashMap<String, Reservation> reservaitonHashMap) {
         this.reservaitonHashMap = reservaitonHashMap;
     }
-    
+
+    // 예약 id로 예약 객체 받아오는 함수
+    public Reservation getReservation(String reservationId) {
+        return reservaitonHashMap.get(reservationId);
+    }
+
     // 예약 한 건 추가하는 메소드 추가함
     public void addReservation(Reservation reservation) {
-    	reservaitonHashMap.put(reservation.getReservationId(),reservation);
+        reservaitonHashMap.put(reservation.getReservationId(),reservation);
     }
 
 }
