@@ -21,6 +21,8 @@ public class Main {
         System.out.println("기존 저희 호텔 회원이라면 로그인을 해주십시오.");
         System.out.println("처음이신가요? 회원가입을 통해 최상의 서비스를 누려보세요 !");
 
+        main.createRoom(hotel);
+
         // 로그인 의사결정
         while (true) {
             System.out.println("1. 로그인     2. 회원가입     3. 나가기");
@@ -87,7 +89,7 @@ public class Main {
         
     }
 
-    public void displayRoom(Hotel hotel) {
+    public void createRoom(Hotel hotel) {
         // 방 정보 삽입
         ArrayList<Room> roomList = new ArrayList<>();
         roomList.add(new Room(300, 3000000, 1));
@@ -97,24 +99,13 @@ public class Main {
         // Hotel 인스턴스 생성
         hotel.setRooms(roomList);
         ArrayList<Room> hotelRooms = hotel.getRooms();
-
-        // 방 가격 절사 인스턴스 생성
-        DecimalFormat df = new DecimalFormat("###,###");
-
-
-        // 호텔 방 목록
-        for (Room room : hotelRooms) {
-            int amount = room.getPrice();
-            String isAvailable;
-            if(room.isAvailable()) {
-                isAvailable = "[ 빈방입니다 ]";
-            } else {
-                isAvailable = "[ 이미 예약된 방입니다 ]";
-            }
-
-            String roomPrice = df.format(amount);
-            String roomInfo = String.format("사이즈: %s      가격: %s      객실 번호: %d      %s",
-                    room.getSize(), roomPrice + " 원", room.getRoomNumber(), isAvailable);
+      
+    }
+    public void displayRoom(Hotel hotel) {
+        // 호텔 방 목록 출력
+        for (Room room : hotel.getRooms()) { // 추후 디자인 수정
+            String roomInfo = String.format("사이즈: %s      가격: %d      객실 번호: %d",
+                    room.getSize(), room.getPrice(), room.getRoomNumber());
             System.out.println(roomInfo);
         }
     }
