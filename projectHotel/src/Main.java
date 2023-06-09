@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -63,7 +64,7 @@ public class Main {
             switch (choiceNum) {
                 case 1:
                     // 예약하기 메서드 (예약할 때마다 자산 추가)
-                    main.displayRoom(hotel); // 호출 방식 생각해보기
+                    main.displayRoom(hotel);
                 	guestManagement.doReservation(guest,hotel);
                     break;
                 case 2:
@@ -97,10 +98,14 @@ public class Main {
         hotel.setRooms(roomList);
         ArrayList<Room> hotelRooms = hotel.getRooms();
 
+        // 방 가격 절사 인스턴스 생성
+        DecimalFormat df = new DecimalFormat("###,###");
+
         // 호텔 방 목록
-        for (Room room : hotelRooms) { // 추후 디자인 수정
-            String roomInfo = String.format("사이즈: %s      가격: %d      객실 번호: %d",
-                    room.getSize(), room.getPrice(), room.getRoomNumber());
+        for (Room room : hotelRooms) {
+            int amount = room.getPrice();
+            String roomPrice = df.format(amount);
+            String roomInfo = String.format("사이즈: %s      가격: %s      객실 번호: %d", room.getSize(), roomPrice + " 원", room.getRoomNumber());
             System.out.println(roomInfo);
         }
     }
