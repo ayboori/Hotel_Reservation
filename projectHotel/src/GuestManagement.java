@@ -26,14 +26,14 @@ public class GuestManagement implements Management, AllObjects {
         String reservationId = sc.nextLine();
 
         if (allReservation.getReservaitonHashMap().containsKey(reservationId)) {
-        	System.out.println("\n==================================================");
+            System.out.println("\n==================================================");
             System.out.println("선택한 예약 정보:");
             Reservation selectedReservation = allReservation.getReservaitonHashMap().get(reservationId);
             System.out.println("예약자 분 성함: " + selectedReservation.getGuestName());
             System.out.println("예약자 분 전화번호: " + selectedReservation.getPhoneNum());
             System.out.println("예약한 방 번호: " + selectedReservation.getRoomNum());
             System.out.println("예약일자: " + selectedReservation.getReservationDate());  // 수정본
-        	System.out.println("==================================================");
+            System.out.println("==================================================");
             //System.out.println(selectedReservation.toString()); // 수정하기
             cancelReservation(reservationId,guest);
         } else {
@@ -42,7 +42,7 @@ public class GuestManagement implements Management, AllObjects {
     }
 
     public void cancelReservation(String reservationId,Guest guest) {
-    	System.out.println("예약을 취소하시겠습니까? y/n");    	
+        System.out.println("예약을 취소하시겠습니까? y/n");
 
         // 고객이 선택한 객실
         int roomNum = allReservation.getReservation(reservationId).getRoomNum();
@@ -50,30 +50,30 @@ public class GuestManagement implements Management, AllObjects {
 
         // 선택한 객실 가격
         int roomPrice = selectedRoom.getPrice();
-        
-    	//예약 취소 여부를 무한 루프로 받음 (잘못된 값은 다시 입력받도록)    	
-    	try {
-    		while(true) {
-        	String answer = sc.nextLine();
-	    	switch (answer) {
-	    		case "y":
-	    			allReservation.getReservaitonHashMap().remove(reservationId);
-	               guest.setMoney(guest.getMoney() + roomPrice); // 손님 소지금 방 가격만큼 플러스
-	               hotel.setAsset(hotel.getAsset() - roomPrice); // 호텔 보유자산에 방 가격 마이너스
-	    			System.out.println("예약이 취소되었습니다.\n 3초 뒤 메인 화면으로 연결됩니다.");
-	    			Thread.sleep(3000);
-	    			return;
-	    		case "n":
-	    			System.out.println("예약을 취소하지 않습니다.\n 3초 뒤 메인 화면으로 연결됩니다.");
-	    			Thread.sleep(3000);
-	    			return;
-	    		default:
-	    			System.out.println("잘못된 문자입니다. 예약을 취소하려면 y, 아니면 n을 입력해주세요");
-	    		}
-    		}
-    	}catch (InterruptedException e){
-        	throw new RuntimeException(e);
-    	}    	
+      
+        //예약 취소 여부를 무한 루프로 받음 (잘못된 값은 다시 입력받도록)
+        try {
+            while(true) {
+                String answer = sc.nextLine();
+                switch (answer) {
+                    case "y":
+                        allReservation.getReservaitonHashMap().remove(reservationId);
+                        guest.setMoney(guest.getMoney() + roomPrice); // 손님 소지금 방 가격만큼 플러스
+                        hotel.setAsset(hotel.getAsset() - roomPrice); // 호텔 보유자산에 방 가격 마이너스
+                        System.out.println("예약이 취소되었습니다.\n 3초 뒤 메인 화면으로 연결됩니다.");
+                        Thread.sleep(3000);
+                        return;
+                    case "n":
+                        System.out.println("예약을 취소하지 않습니다.\n 3초 뒤 메인 화면으로 연결됩니다.");
+                        Thread.sleep(3000);
+                        return;
+                    default:
+                        System.out.println("잘못된 문자입니다. 예약을 취소하려면 y, 아니면 n을 입력해주세요");
+                }
+            }
+        }catch (InterruptedException e){
+            throw new RuntimeException(e);
+        }
     }
 
     public void doReservation(Guest guest) {
@@ -110,7 +110,7 @@ public class GuestManagement implements Management, AllObjects {
                 String reservationId = UUID.randomUUID().toString();
 
                 Reservation reservation = new Reservation(guest, selectedRoom.getRoomNumber(), nowString, reservationId);
-              
+
                 // 예약된 객실 이용 불가로 변경
                 selectedRoom.setAvailable(false);
 
