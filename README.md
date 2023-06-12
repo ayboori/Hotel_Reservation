@@ -27,7 +27,4 @@
 
 ### 4) 게스트 로그인
 
-## Git Hub 링크
-https://github.com/ayboori/Hotel_Reservation
-
 
