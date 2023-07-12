@@ -2,7 +2,7 @@ import java.util.*;
 public class AllGuests {
     HashMap<String,Guest> guests = new HashMap<String,Guest>();
     public void addGusets() {
-        guests.put("hotel", new Guest());
+        guests.put("hotel", new Guest("호텔 매니저", "010-1234-5678", 1000000000));
         guests.put("hjh3229", new Guest("한지훈", "010-3229-8290", 3000000));
         guests.put("sepang-pang", new Guest("오세창", "010-XXXX-XXXX", 4000000));
         guests.put("ayboori", new Guest("조아영", "010-XXXX-XXXX", 10000000));
@@ -21,6 +21,7 @@ public class AllGuests {
         int money = sc.nextInt() * 10000;
         // id는 사용자 이름 + uuid 4글자
         String guestId = guestName + UUID.randomUUID().toString().substring(0, 4);
+
         Guest guest = new Guest(guestName, phoneNum, money);
         // 아이디 명시
         System.out.println("회원가입을 축하합니다 !");

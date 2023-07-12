@@ -6,12 +6,7 @@ import java.util.Scanner;
 
 public class GuestManagement implements Management, AllObjects {
 
-    AllReservation allReservation;
-    Reservation reservation;
-
-    GuestManagement(AllReservation allReservation) {
-        this.allReservation = allReservation;
-    }
+    GuestManagement() {}
 
     Scanner sc = new Scanner(System.in);
 
@@ -21,7 +16,7 @@ public class GuestManagement implements Management, AllObjects {
             System.out.println("현재 예약이 없습니다.");
             return;
         }
-
+        sc.nextLine();
         System.out.println("예약 번호를 입력하세요:");
         String reservationId = sc.nextLine();
 
@@ -29,6 +24,7 @@ public class GuestManagement implements Management, AllObjects {
             System.out.println("\n==================================================");
             System.out.println("선택한 예약 정보:");
             Reservation selectedReservation = allReservation.getReservaitonHashMap().get(reservationId);
+            // System.out.println(selectedReservation.toString(guest, selectedReservation.getRoomNum(), selectedReservation.getReservationDate()));
             System.out.println("예약자 분 성함: " + selectedReservation.getGuestName());
             System.out.println("예약자 분 전화번호: " + selectedReservation.getPhoneNum());
             System.out.println("예약한 방 번호: " + selectedReservation.getRoomNum());

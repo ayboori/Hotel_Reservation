@@ -72,7 +72,7 @@ public class Main implements AllObjects {
                 case 0:
                     // 관리자 모드 => 모든 예약 조회
                 	hotelManagement.showReservationList(guest);
-                    break;
+                    return;
                 default:
                     System.out.println("잘못된 번호입니다. 다시 입력해주세요.");
             }

@@ -1,11 +1,8 @@
-import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
 
 public class HotelManagement implements Management, AllObjects {
-    AllReservation allReservation;
-    GuestManagement guestManagement;
     HotelManagement() {}
 
     @Override
@@ -33,10 +30,9 @@ public class HotelManagement implements Management, AllObjects {
                 try {
                     if (check == 1) {
                         System.out.println("프로그램이 종료됩니다.");
-                        Thread.sleep(3000); // 3초 정지 후 프로그램 종료
+                        Thread.sleep(1000); // 3초 정지 후 프로그램 종료
                         return;
                     } else if (check == 2) {
-                        guestManagement = new GuestManagement(allReservation);
                         guestManagement.showReservationList(guest);
                         break;
                     } else { // 다른 숫자를 입력받았을 때

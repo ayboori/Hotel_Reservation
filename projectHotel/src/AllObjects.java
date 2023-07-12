@@ -2,7 +2,7 @@ import java.util.HashMap;
 
 public interface AllObjects{
     AllReservation allReservation = new AllReservation(new HashMap<>());
-    GuestManagement guestManagement = new GuestManagement(allReservation);
+    GuestManagement guestManagement = new GuestManagement();
     HotelManagement hotelManagement = new HotelManagement();
 
     AllGuests allGuests = new AllGuests();
